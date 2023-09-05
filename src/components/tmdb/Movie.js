@@ -11,7 +11,6 @@ function Movies() {
   const path = 'https://image.tmdb.org/t/p/w500';
 
   useEffect(() => {
-    // Define a function to fetch movie data
     const fetchMovies = async () => {
       try {
         const response = await axiosInstance.get('/3/movie/popular', {
@@ -21,19 +20,15 @@ function Movies() {
             page: currentPage,
           },
         });
-
         if (response.status !== 200) {
           throw new Error(`Failed to fetch data: ${response.status}`);
         }
-
         const data = response.data;
         setMovies(data.results);
       } catch (error) {
         console.error(error);
       }
     };
-
-    // Call the fetchMovies function when the component mounts, when the currentPage changes, or when the lang changes
     fetchMovies();
   }, [currentPage, lang]);
 
